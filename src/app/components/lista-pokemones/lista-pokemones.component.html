@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <div
+      class="search-results"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="100"
+      (scrolled)="onScroll(true)"
+    >
+    <div class="row">
+        <div *ngFor="let pokemon of pokemones" class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card border-success  m-1" (click)="openModal(template,pokemon.id)">
+                <div class="card-horizontal">
+                    
+                    <div class="card-body border-success pt-0 pb-0 pr-0">
+                        <h4 class="card-title pt-2">{{pokemon.name}}</h4>
+                        <p>Height: {{pokemon.height}}</p>
+                        <p>Height: {{pokemon.weight}}</p>
+                        <div class="d-flex">
+                            <p>Abilities:</p>
+                            <div *ngFor="let habilidad of pokemon.abilities">
+                                <p class="ml-2"> {{habilidad.ability.name}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="img-square-wrapper">
+                        <img class="img-fluid" [src]="pokemon.sprites.front_default">
+                    </div>
+                </div>
+                <div class="card-footer border-success bg-transparent border-0 d-flex pt-0 ">
+                    <div *ngFor="let tipo of pokemon.types">
+                        <button type="button" class="btn btn-success m-2 b-0" >{{tipo.type.name}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row pb-5">
+        <div class="col-md-12 p-5">
+        <ngx-spinner
+        bdOpacity = 0.9
+        bdColor = ""
+        size = "default"
+        color = "#28a745"
+        type = "line-scale-party"
+        [fullScreen] = "false"
+        >
+        </ngx-spinner>
+      </div>
+    </div>
+
+    <div *ngIf = "" class="row pb-5">
+        <div class="col-md-12 d-flex justify-content-center">
+            <div class="text-muted h6 alert alert-secondary p-2">No existen mas Pokemones</div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <ng-template #template>
+        <div class="modal-header">
+        	<h4 class="modal-title pull-left">{{pokemones1.name}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="img-square-wrapper col-sm-12">
+                  <img class="img-fluid m-0 img-modal" [src]="pokemonImg">
+                </div>
+            </div>
+              
+              <div class="modal-body" >
+                <div class="row">
+                    <div class="col-es-6 col-sm-6 col-md-6 col-lg-6" *ngFor="let stats of pokemones2">
+                      {{stats.stat.name}}: {{stats.base_stat}}
+                    </div>
+                </div>
+              </div>
+            
+              <div>
+                <div class="row">
+                  <div class="col-sm-6" *ngFor="let ubicacion of ubicacionpoke">
+                    <p>{{ubicacion.location_area.name}}</p>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </ng-template>
+</div>
+
+

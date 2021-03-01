@@ -1,0 +1,31 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div *ngFor="let pokemon of pokemones" class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card-horizontal">
+                    
+                    <div class="card-body border-success pt-0 pb-0 pr-0">
+                        <h4 class="card-title pt-2">{{pokemon.name}}</h4>
+                        <p>Height: {{pokemon.height}}</p>
+                        <p>Height: {{pokemon.weight}}</p>
+                        <div class="d-flex">
+                            <p>Abilities:</p>
+                            <div *ngFor="let habilidad of pokemones.abilities">
+                                <p class="ml-2"> {{habilidad.ability.name}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="img-square-wrapper">
+                        <img class="img-fluid" [src]="pokemon.sprites.front_default">
+                    </div>
+                </div>
+                <div class="card-footer border-success bg-transparent border-0 d-flex pt-0 ">
+                    <div *ngFor="let tipo of pokemon.types">
+                        <button type="button" class="btn btn-success m-2 b-0" >{{tipo.type.name}}</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
